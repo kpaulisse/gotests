@@ -2,7 +2,7 @@ package undefinedtypes
 
 import "testing"
 
-func TestSomeStruct_Do(t *testing.T) {
+func TestSomeStructDo(t *testing.T) {
 	type fields struct {
 		Doer some.Doer
 	}

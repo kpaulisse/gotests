@@ -2,7 +2,7 @@ package testdata
 
 import "testing"
 
-func TestTestReceiver_FooMethod(t *testing.T) {
+func TestTestReceiverFooMethod(t *testing.T) {
 	tests := []struct {
 		name    string
 		tr      *TestReceiver

@@ -9,6 +9,7 @@ import (
 	"strings"
 	"text/template"
 
+	"github.com/Masterminds/sprig"
 	"github.com/cweill/gotests/internal/models"
 	"github.com/cweill/gotests/internal/render/bindata"
 	"github.com/cweill/gotests/templates"
@@ -78,13 +79,19 @@ func LoadCustomTemplatesName(name string) error {
 }
 
 func initEmptyTmpls() {
-	tmpls = template.New("render").Funcs(map[string]interface{}{
+	funcMap := map[string]interface{}{
 		"Field":    fieldName,
 		"Receiver": receiverName,
 		"Param":    parameterName,
 		"Want":     wantName,
 		"Got":      gotName,
-	})
+	}
+
+	for k, v := range sprig.FuncMap() {
+		funcMap[k] = v
+	}
+
+	tmpls = template.New("render").Funcs(funcMap)
 }
 
 func fieldName(f *models.Field) string {
